@@ -106,7 +106,9 @@ class ActivationGooseFrag: Fragment() {
     private fun startGoose(){
         binding.goGoose.setOnClickListener {
             when{
-                rub -> FragmentManager.setFragment(RubInFire.newInstance(), activity as AppCompatActivity)
+                rub -> {
+                    binding.gifImageView.visibility = View.VISIBLE
+                    FragmentManager.setFragment(RubInFire.newInstance(), activity as AppCompatActivity)}
                 moskow -> FragmentManager.setFragment(MoscowInFire.newInstance(), activity as AppCompatActivity)
                 bunker -> FragmentManager.setFragment(BunkerInFire.newInstance(), activity as AppCompatActivity)
                 lucash -> FragmentManager.setFragment(DedInFire.newInstance(), activity as AppCompatActivity)
