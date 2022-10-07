@@ -31,10 +31,6 @@ class StartFragment: Fragment() {
             FragmentManager.setFragment(ActivationGooseFrag.newInstance(), activity as AppCompatActivity)
         }
     }
-
-
-
-
     companion object {
         fun newInstance() = StartFragment()
     }

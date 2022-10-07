@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
+
 }
 
 android {
@@ -33,6 +35,7 @@ android {
         viewBinding true
     }
 }
+
 
 dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'

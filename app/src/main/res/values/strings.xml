@@ -11,15 +11,17 @@
     <string name="na_rubl">На курс рубля</string>
 
     <string name="slava_ukraine">Слава Україні!</string>
+    <string name="goose_map">Карта запусків гуся по позиціям</string>
     <string name="sucsessfull_goose">Ваш гусак успішно запущений</string>
     <string name="wait_for_bam">Очікуйте гучного «свєрх-тратата»
         по позиції найближчим часом</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Bottoms -->
     <string name="start_goose">Запустити гуся</string>
     <string name="look_map">Переглянути карту</string>
     <string name="choose_position">Обрати позицію</string>
+    <string name="choose_new_position">Обрати нову позицію</string>
 
 
 </resources>

@@ -1,24 +1,25 @@
 package com.dimas.wargoose.fragments
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import com.dimas.wargoose.R
+import com.dimas.wargoose.databinding.BunkerInFireBinding
+import com.dimas.wargoose.databinding.FragmentMapBinding
 
-import androidx.fragment.app.Fragment
-import com.dimas.wargoose.databinding.MoscowInFireBinding
+class MapFrag : Fragment() {
 
 
-class MoscowInFire: Fragment() {
-
-    private lateinit var binding: MoscowInFireBinding
+    private lateinit var binding: FragmentMapBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = MoscowInFireBinding.inflate(inflater, container, false)
+        binding = FragmentMapBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -27,17 +28,14 @@ class MoscowInFire: Fragment() {
         exitFrag()
     }
 
+
     private fun exitFrag(){
-        binding.goToMap.setOnClickListener{
-            FragmentManager.setFragment(MapFrag.newInstance(), activity as AppCompatActivity)
-        }
-        binding.imExit.setOnClickListener{
-            FragmentManager.setFragment(StartFragment.newInstance(), activity as AppCompatActivity)
+        binding.bDone.setOnClickListener{
+            FragmentManager.setFragment(ActivationGooseFrag.newInstance(), activity as AppCompatActivity)
         }
     }
 
-
     companion object {
-        fun newInstance() = MoscowInFire()
+        fun newInstance() = MapFrag()
     }
 }

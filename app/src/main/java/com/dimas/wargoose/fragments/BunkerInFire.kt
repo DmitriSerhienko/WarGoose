@@ -1,14 +1,14 @@
 package com.dimas.wargoose.fragments
 
+
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.fragment.app.Fragment
 import com.dimas.wargoose.databinding.BunkerInFireBinding
-import com.dimas.wargoose.databinding.MoscowInFireBinding
 
 
 class BunkerInFire: Fragment() {
@@ -29,9 +29,13 @@ class BunkerInFire: Fragment() {
     }
     private fun exitFrag(){
         binding.goToMap.setOnClickListener{
-            FragmentManager.setFragment(ActivationGooseFrag.newInstance(), activity as AppCompatActivity)
+            FragmentManager.setFragment(MapFrag.newInstance(), activity as AppCompatActivity)
+        }
+        binding.imExit.setOnClickListener{
+            FragmentManager.setFragment(StartFragment.newInstance(), activity as AppCompatActivity)
         }
     }
+
 
 
     companion object {

@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WarGoose">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
-            android:noHistory="true"
-            android:name=".SplashActivity"
-            android:exported="true">
+            android:name=".activity.SplashActivity"
+            android:exported="true"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

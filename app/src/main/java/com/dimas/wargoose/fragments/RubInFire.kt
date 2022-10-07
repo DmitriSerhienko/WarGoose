@@ -30,7 +30,10 @@ class RubInFire: Fragment() {
 
     private fun exitFrag(){
         binding.goToMap.setOnClickListener{
-            FragmentManager.setFragment(ActivationGooseFrag.newInstance(), activity as AppCompatActivity)
+            FragmentManager.setFragment(MapFrag.newInstance(), activity as AppCompatActivity)
+        }
+        binding.imExit.setOnClickListener{
+            FragmentManager.setFragment(StartFragment.newInstance(), activity as AppCompatActivity)
         }
     }
 
