@@ -1,18 +1,15 @@
 package com.dimas.wargoose.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.dimas.wargoose.R
 import com.dimas.wargoose.R.color.background
 import com.dimas.wargoose.R.color.white
-import com.dimas.wargoose.activity.MainActivity
 import com.dimas.wargoose.databinding.ActivationGooseBinding
 
 
@@ -46,12 +43,14 @@ class ActivationGooseFrag: Fragment() {
             defRub()
             binding.moskowChoosed.setBackgroundColor(resources.getColor(background))
             binding.imMoscow.setImageResource(R.drawable.mackwa_original)
+            binding.goGoose.alpha = 1F
             moskow = true
         }
 
         binding.bunker.setOnClickListener {
             binding.bunkerChoosed.setBackgroundColor(resources.getColor(background))
             binding.imBunker.setImageResource(R.drawable.bunker_original)
+            binding.goGoose.alpha = 1F
             defDed()
             defMos()
             defRub()
@@ -61,6 +60,7 @@ class ActivationGooseFrag: Fragment() {
         binding.lucash.setOnClickListener {
             binding.dedChoosed.setBackgroundColor(resources.getColor(background))
             binding.imDed.setImageResource(R.drawable.chrik_original)
+            binding.goGoose.alpha = 1F
             lucash = true
             defMos()
             defBunker()
@@ -70,6 +70,7 @@ class ActivationGooseFrag: Fragment() {
         binding.rubl.setOnClickListener {
             binding.rubChosed.setBackgroundColor(resources.getColor(background))
             binding.imRub.setImageResource(R.drawable.rubl_original)
+            binding.goGoose.alpha = 1F
             rub = true
             defDed()
             defMos()
@@ -107,6 +108,7 @@ class ActivationGooseFrag: Fragment() {
     }
 
     private fun startGoose(){
+
         binding.goGoose.setOnClickListener {
             when{
                 rub -> {
@@ -118,6 +120,7 @@ class ActivationGooseFrag: Fragment() {
                             FragmentManager.setFragment(RubInFire.newInstance(), activity as AppCompatActivity)
                         }
                     }.start()
+
                     }
                 moskow -> {
                     showGoose()
