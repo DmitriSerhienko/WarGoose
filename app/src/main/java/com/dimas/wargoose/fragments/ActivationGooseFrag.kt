@@ -11,6 +11,8 @@ import com.dimas.wargoose.R
 import com.dimas.wargoose.R.color.background
 import com.dimas.wargoose.R.color.white
 import com.dimas.wargoose.databinding.ActivationGooseBinding
+import com.dimas.wargoose.db.Item
+import com.dimas.wargoose.db.MainDb
 
 
 class ActivationGooseFrag: Fragment() {
@@ -18,8 +20,9 @@ class ActivationGooseFrag: Fragment() {
     private lateinit var timer: CountDownTimer
     private var rub: Boolean = false
     private var moskow: Boolean = false
-    private var bunker: Boolean = false
-    private var lucash: Boolean = false
+    private var bunkers: Boolean = false
+    private var lucasha: Boolean = false
+   // val db = MainDb.getDb(requireContext().getApplicationContext())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,41 +39,41 @@ class ActivationGooseFrag: Fragment() {
         exitFrag()
     }
 
-    private fun choosePosition() {
-        binding.moscow.setOnClickListener {
+    private fun choosePosition() = with(binding) {
+        moscow.setOnClickListener {
             defDed()
             defBunker()
             defRub()
-            binding.moskowChoosed.setBackgroundColor(resources.getColor(background))
-            binding.imMoscow.setImageResource(R.drawable.mackwa_original)
-            binding.goGoose.alpha = 1F
+            moskowChoosed.setBackgroundColor(resources.getColor(background))
+            imMoscow.setImageResource(R.drawable.mackwa_original)
+            goGoose.alpha = 1F
             moskow = true
         }
 
-        binding.bunker.setOnClickListener {
-            binding.bunkerChoosed.setBackgroundColor(resources.getColor(background))
-            binding.imBunker.setImageResource(R.drawable.bunker_original)
-            binding.goGoose.alpha = 1F
+        bunker.setOnClickListener {
+            bunkerChoosed.setBackgroundColor(resources.getColor(background))
+            imBunker.setImageResource(R.drawable.bunker_original)
+            goGoose.alpha = 1F
             defDed()
             defMos()
             defRub()
-            bunker = true
+            bunkers = true
         }
 
-        binding.lucash.setOnClickListener {
-            binding.dedChoosed.setBackgroundColor(resources.getColor(background))
-            binding.imDed.setImageResource(R.drawable.chrik_original)
-            binding.goGoose.alpha = 1F
-            lucash = true
+        lucash.setOnClickListener {
+            dedChoosed.setBackgroundColor(resources.getColor(background))
+            imDed.setImageResource(R.drawable.chrik_original)
+            goGoose.alpha = 1F
+            lucasha = true
             defMos()
             defBunker()
             defRub()
         }
 
-        binding.rubl.setOnClickListener {
-            binding.rubChosed.setBackgroundColor(resources.getColor(background))
-            binding.imRub.setImageResource(R.drawable.rubl_original)
-            binding.goGoose.alpha = 1F
+        rubl.setOnClickListener {
+            rubChosed.setBackgroundColor(resources.getColor(background))
+            imRub.setImageResource(R.drawable.rubl_original)
+            goGoose.alpha = 1F
             rub = true
             defDed()
             defMos()
@@ -79,7 +82,7 @@ class ActivationGooseFrag: Fragment() {
     }
 
     private fun defDed() {
-        lucash = false
+        lucasha = false
         binding.dedChoosed.setBackgroundColor(resources.getColor(white))
         binding.imDed.setImageResource(R.drawable.chrik_dark)
     }
@@ -93,7 +96,7 @@ class ActivationGooseFrag: Fragment() {
     private fun defBunker(){
         binding.bunkerChoosed.setBackgroundColor(resources.getColor(white))
         binding.imBunker.setImageResource(R.drawable.bunker_dark)
-        bunker = false
+        bunkers = false
     }
 
     private fun defRub(){
@@ -120,6 +123,12 @@ class ActivationGooseFrag: Fragment() {
                             FragmentManager.setFragment(RubInFire.newInstance(), activity as AppCompatActivity)
                         }
                     }.start()
+//                    var item = Item(+0,
+//                    +0, +1,+0)
+//                    Thread{
+//                        db.getDao().insertItem(item)
+//                    }.start()
+
 
                     }
                 moskow -> {
@@ -132,7 +141,7 @@ class ActivationGooseFrag: Fragment() {
                         }
                     }.start()
                 }
-                bunker -> {
+                bunkers -> {
                     showGoose()
                     timer = object : CountDownTimer(2000, 2000) {
                         override fun onTick(p0: Long) {
@@ -142,7 +151,7 @@ class ActivationGooseFrag: Fragment() {
                         }
                     }.start()
                 }
-                lucash -> {
+                lucasha -> {
                     showGoose()
                     timer = object : CountDownTimer(2000, 2000) {
                         override fun onTick(p0: Long) {
