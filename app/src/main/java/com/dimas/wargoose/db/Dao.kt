@@ -10,6 +10,6 @@ interface Dao {
     @Insert
     fun insertItem(item: Item)
 
-    @Query("SELECT*FROM tables")
+    @Query("SELECT * FROM items")
     fun getAllItems(): Flow<List<Item>>
 }

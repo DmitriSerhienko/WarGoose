@@ -22,7 +22,8 @@ class ActivationGooseFrag: Fragment() {
     private var moskow: Boolean = false
     private var bunkers: Boolean = false
     private var lucasha: Boolean = false
-   // val db = MainDb.getDb(requireContext().getApplicationContext())
+    val db = context?.let { MainDb.getDb(it.applicationContext) }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -115,6 +116,7 @@ class ActivationGooseFrag: Fragment() {
         binding.goGoose.setOnClickListener {
             when{
                 rub -> {
+
                     showGoose()
                     timer = object : CountDownTimer(2000, 2000) {
                         override fun onTick(p0: Long) {
@@ -123,12 +125,10 @@ class ActivationGooseFrag: Fragment() {
                             FragmentManager.setFragment(RubInFire.newInstance(), activity as AppCompatActivity)
                         }
                     }.start()
-//                    var item = Item(+0,
-//                    +0, +1,+0)
-//                    Thread{
-//                        db.getDao().insertItem(item)
-//                    }.start()
-
+                    val item = Item(null, "qqq", "11","0","0")
+                    Thread{
+                        db?.getDao()?.insertItem(item)
+                    }.start()
 
                     }
                 moskow -> {
