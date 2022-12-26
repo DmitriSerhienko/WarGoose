@@ -9,11 +9,11 @@ data class Item(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,    //в эту переменную записываем уникальное ИД, которое автогенериться, в аннотации
     @ColumnInfo(name = "mos")
-    var mos: String,
+    var mos: Int? = null,
     @ColumnInfo(name = "bun")
-    var bun: String,
+    var bun: Int? = null,
     @ColumnInfo(name = "rubchic")
-    var rubchic: String,
+    var rubchic: Int? = null,
     @ColumnInfo(name = "lukashenko")
-    var lukashenko: String
+    var lukashenko: Int? = null
 )

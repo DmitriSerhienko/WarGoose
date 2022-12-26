@@ -22,7 +22,6 @@ class ActivationGooseFrag: Fragment() {
     private var moskow: Boolean = false
     private var bunkers: Boolean = false
     private var lucasha: Boolean = false
-    val db = context?.let { MainDb.getDb(it.applicationContext) }
 
 
     override fun onCreateView(
@@ -125,9 +124,10 @@ class ActivationGooseFrag: Fragment() {
                             FragmentManager.setFragment(RubInFire.newInstance(), activity as AppCompatActivity)
                         }
                     }.start()
-                    val item = Item(null, "qqq", "11","0","0")
+                    val db = MainDb.getDb(requireContext().applicationContext)
+                    val item = Item(null, 0,  0,1,0)
                     Thread{
-                        db?.getDao()?.insertItem(item)
+                        db.getDao().insertItem(item)
                     }.start()
 
                     }
@@ -140,6 +140,11 @@ class ActivationGooseFrag: Fragment() {
                             FragmentManager.setFragment(MoscowInFire.newInstance(), activity as AppCompatActivity)
                         }
                     }.start()
+                    val db = MainDb.getDb(requireContext().applicationContext)
+                    val item = Item(null, 1,  0,0,0)
+                    Thread{
+                        db.getDao().insertItem(item)
+                    }.start()
                 }
                 bunkers -> {
                     showGoose()
@@ -150,6 +155,11 @@ class ActivationGooseFrag: Fragment() {
                             FragmentManager.setFragment(BunkerInFire.newInstance(), activity as AppCompatActivity)
                         }
                     }.start()
+                    val db = MainDb.getDb(requireContext().applicationContext)
+                    val item = Item(null, 0,  1,0,0)
+                    Thread{
+                        db.getDao().insertItem(item)
+                    }.start()
                 }
                 lucasha -> {
                     showGoose()
@@ -159,6 +169,11 @@ class ActivationGooseFrag: Fragment() {
                         override fun onFinish() {
                             FragmentManager.setFragment(DedInFire.newInstance(), activity as AppCompatActivity)
                         }
+                    }.start()
+                    val db = MainDb.getDb(requireContext().applicationContext)
+                    val item = Item(null, 0,  0,0,1)
+                    Thread{
+                        db.getDao().insertItem(item)
                     }.start()
                 }
             }
