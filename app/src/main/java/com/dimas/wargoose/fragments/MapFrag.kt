@@ -1,18 +1,19 @@
 package com.dimas.wargoose.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimas.wargoose.R
-import com.dimas.wargoose.activity.MapModel
 import com.dimas.wargoose.activity.MapAdapter
+import com.dimas.wargoose.activity.MapModel
 import com.dimas.wargoose.databinding.FragmentMapBinding
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class MapFrag : Fragment() {
     private lateinit var binding: FragmentMapBinding
@@ -36,15 +37,18 @@ class MapFrag : Fragment() {
         adapter = MapAdapter()
         rcView.adapter = adapter
         val list = listOf(
-            MapModel(getCurTime(),R.string.na_moskow,R.drawable.mackwa_gus),
-            MapModel(getCurTime(),R.string.na_lukasha,R.drawable.chrik_gus),
-            MapModel(getCurTime(),R.string.na_bunker, R.drawable.bunker_gus),
-            MapModel(getCurTime(),R.string.na_rubl,R.drawable.rubl_gues))
+            MapModel(getCurTime(),R.string.na_moskow,R.drawable.mackwa_gus, mosckowPub.toString()),
+            MapModel(getCurTime(),R.string.na_lukasha,R.drawable.chrik_gus, lukashenkoPub.toString()),
+            MapModel(getCurTime(),R.string.na_bunker, R.drawable.bunker_gus, bunkerPub.toString()),
+            MapModel(getCurTime(),R.string.na_rubl,R.drawable.rubl_gues, rubPub.toString()))
         adapter.submitList(list)
 
         bDone.setOnClickListener{
             FragmentManager.setFragment(ActivationGooseFrag.newInstance(), activity as AppCompatActivity)
         }
+
+
+
     }
 
     private fun getCurTime(): String {

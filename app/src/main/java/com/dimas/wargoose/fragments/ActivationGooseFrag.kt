@@ -1,5 +1,8 @@
 package com.dimas.wargoose.fragments
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -10,18 +13,28 @@ import androidx.fragment.app.Fragment
 import com.dimas.wargoose.R
 import com.dimas.wargoose.R.color.background
 import com.dimas.wargoose.R.color.white
+import com.dimas.wargoose.activity.PREF_CONT
 import com.dimas.wargoose.databinding.ActivationGooseBinding
 import com.dimas.wargoose.db.Item
 import com.dimas.wargoose.db.MainDb
 
+var mosckowPub: Int = 0
+var rubPub: Int = 0
+var lukashenkoPub: Int = 0
+var bunkerPub: Int = 0
 
-class ActivationGooseFrag: Fragment() {
+class ActivationGooseFrag(): Fragment() {
     private lateinit var binding: ActivationGooseBinding
     private lateinit var timer: CountDownTimer
+    private lateinit var sharedMoscow: SharedPreferences
+    private lateinit var sharedRub: SharedPreferences
+    private lateinit var sharedLuka: SharedPreferences
+    private lateinit var sharedBunker: SharedPreferences
     private var rub: Boolean = false
     private var moskow: Boolean = false
     private var bunkers: Boolean = false
     private var lucasha: Boolean = false
+
 
 
     override fun onCreateView(
@@ -37,9 +50,13 @@ class ActivationGooseFrag: Fragment() {
         startGoose()
         choosePosition()
         exitFrag()
+
     }
 
     private fun choosePosition() = with(binding) {
+
+
+
         moscow.setOnClickListener {
             defDed()
             defBunker()
@@ -105,27 +122,43 @@ class ActivationGooseFrag: Fragment() {
         rub = false
     }
 
-    private fun showGoose(){
-        binding.gifImageView.visibility = View.VISIBLE
-        binding.cardView.visibility = View.GONE
+    @SuppressLint("Range")
+    private fun showGoose()= with(binding){
+        imGusAttack.visibility = View.VISIBLE
+        imGusAttack.alpha = 2F
+        imGusAttack.animate().translationY(-3000f).duration = 1900
+        //binding.cardView.visibility = View.GONE
     }
 
-    private fun startGoose(){
+    @SuppressLint("UseRequireInsteadOfGet")
+    private fun startGoose() {
+        sharedMoscow = this.activity?.getSharedPreferences("mos",Context.MODE_PRIVATE)!!
+        sharedLuka = this.activity?.getSharedPreferences("luk",Context.MODE_PRIVATE)!!
+        sharedBunker = this.activity?.getSharedPreferences(PREF_CONT,Context.MODE_PRIVATE)!!
+        sharedRub = this.activity?.getSharedPreferences(PREF_CONT,Context.MODE_PRIVATE)!!
+
+
 
         binding.goGoose.setOnClickListener {
             when{
                 rub -> {
 
                     showGoose()
-                    timer = object : CountDownTimer(2000, 2000) {
+                    timer = object : CountDownTimer(1400, 1400) {
                         override fun onTick(p0: Long) {
                         }
                         override fun onFinish() {
                             FragmentManager.setFragment(RubInFire.newInstance(), activity as AppCompatActivity)
                         }
                     }.start()
+                    val res = rubPub + 1
+                    val mosAt = res.toString()
+                    sharedRub.edit().putString("rub", mosAt).apply()
+                    rubPub = sharedRub.getString("rub", "0")!!.toInt()
+
+
                     val db = MainDb.getDb(requireContext().applicationContext)
-                    val item = Item(null, 0,  0,1,0)
+                    val item = Item(null, mosckowPub,  0,1,0)
                     Thread{
                         db.getDao().insertItem(item)
                     }.start()
@@ -133,45 +166,60 @@ class ActivationGooseFrag: Fragment() {
                     }
                 moskow -> {
                     showGoose()
-                    timer = object : CountDownTimer(2000, 2000) {
+                    timer = object : CountDownTimer(1400, 1400) {
                         override fun onTick(p0: Long) {
                         }
                         override fun onFinish() {
                             FragmentManager.setFragment(MoscowInFire.newInstance(), activity as AppCompatActivity)
                         }
                     }.start()
+                    val res = mosckowPub + 1
+                    val mosAt = res.toString()
+                    sharedMoscow.edit().putString("mos", mosAt).apply()
+                    mosckowPub = sharedMoscow.getString("mos", "0")!!.toInt()
+
                     val db = MainDb.getDb(requireContext().applicationContext)
-                    val item = Item(null, 1,  0,0,0)
+                    val item = Item(null, mosckowPub,  0,0,0)
                     Thread{
                         db.getDao().insertItem(item)
                     }.start()
                 }
                 bunkers -> {
                     showGoose()
-                    timer = object : CountDownTimer(2000, 2000) {
+                    timer = object : CountDownTimer(1400, 1400) {
                         override fun onTick(p0: Long) {
                         }
                         override fun onFinish() {
                             FragmentManager.setFragment(BunkerInFire.newInstance(), activity as AppCompatActivity)
                         }
                     }.start()
+                    val res = bunkerPub + 1
+                    val mosAt = res.toString()
+                    sharedBunker.edit().putString("bun", mosAt).apply()
+                    bunkerPub = sharedBunker.getString("bun", "0")!!.toInt()
+
                     val db = MainDb.getDb(requireContext().applicationContext)
-                    val item = Item(null, 0,  1,0,0)
+                    val item = Item(null, mosckowPub,  0,0,0)
                     Thread{
                         db.getDao().insertItem(item)
                     }.start()
                 }
                 lucasha -> {
                     showGoose()
-                    timer = object : CountDownTimer(2000, 2000) {
+                    timer = object : CountDownTimer(1400, 1400) {
                         override fun onTick(p0: Long) {
                         }
                         override fun onFinish() {
                             FragmentManager.setFragment(DedInFire.newInstance(), activity as AppCompatActivity)
                         }
                     }.start()
+                    val res = lukashenkoPub + 1
+                    val mosAt = res.toString()
+                    sharedLuka.edit().putString("luk", mosAt).apply()
+                    lukashenkoPub = sharedLuka.getString("luk", "0")!!.toInt()
+
                     val db = MainDb.getDb(requireContext().applicationContext)
-                    val item = Item(null, 0,  0,0,1)
+                    val item = Item(null, mosckowPub,  0,0,1)
                     Thread{
                         db.getDao().insertItem(item)
                     }.start()
@@ -190,4 +238,8 @@ class ActivationGooseFrag: Fragment() {
     companion object {
         fun newInstance() = ActivationGooseFrag()
     }
+
+
 }
+
+

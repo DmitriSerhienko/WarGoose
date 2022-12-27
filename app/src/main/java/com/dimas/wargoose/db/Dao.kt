@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
+
 @Dao
 interface Dao {
     @Insert
@@ -13,4 +14,7 @@ interface Dao {
 
     @Query("SELECT * FROM items")
     fun getAllItems(): Flow<List<Item>>
+
 }
+
+

@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.asLiveData
 import com.dimas.wargoose.databinding.MoscowInFireBinding
 import com.dimas.wargoose.databinding.RubInFireBinding
+import com.dimas.wargoose.db.MainDb
 
 
 class RubInFire: Fragment() {

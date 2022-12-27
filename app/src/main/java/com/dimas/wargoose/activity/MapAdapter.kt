@@ -17,6 +17,7 @@ class MapAdapter: ListAdapter <MapModel, MapAdapter.MapHolder>(Comparator()) {
             tvDate.setText(map.time)
             imFire.setImageResource(map.image)
             tvMesto.setText(map.title)
+            tvTimes.setText(map.attack)
         }
     }
     class Comparator : DiffUtil.ItemCallback<MapModel>(){

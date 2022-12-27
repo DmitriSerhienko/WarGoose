@@ -17,3 +17,5 @@ data class Item(
     @ColumnInfo(name = "lukashenko")
     var lukashenko: Int? = null
 )
+
+
